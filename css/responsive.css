@@ -1,0 +1,109 @@
+/* ==========================================================================
+   Aarthi Travels — responsive styles
+   ========================================================================== */
+
+/* Large desktop */
+@media (min-width: 1400px) {
+  .container { max-width: 1280px; }
+  .hero-grid { min-height: 720px; }
+}
+
+/* Desktop / small laptop */
+@media (max-width: 1100px) {
+  .main-nav ul { gap: 20px; }
+  .grid-dest:not([data-visible]), .grid-dest[data-visible="8"], .grid-dest[data-visible="12"], .grid-dest[data-visible="16"] { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* Tablet */
+@media (max-width: 960px) {
+  :root { --header-h: 74px; }
+  .logo img { height: 58px; }
+  .nav-toggle { display: inline-flex; }
+  .main-nav { position: absolute; left: 0; right: 0; top: 100%; background: #fff; border-bottom: 1px solid rgba(100, 30, 43, .15); box-shadow: 0 16px 28px rgba(64, 24, 32, .14); max-height: 0; overflow: hidden; visibility: hidden; transition: max-height .35s var(--ease), visibility 0s .35s; }
+  .main-nav.is-open { max-height: 80vh; visibility: visible; transition: max-height .35s var(--ease), visibility 0s; overflow-y: auto; }
+  .main-nav ul { flex-direction: column; align-items: stretch; gap: 0; padding: 8px 20px 20px; }
+  .main-nav li { border-bottom: 1px solid rgba(100, 30, 43, .08); }
+  .main-nav li:last-child { border-bottom: none; padding-top: 14px; }
+  .main-nav a:not(.btn) { display: block; padding: 14px 4px; font-size: 1.02rem; }
+  .main-nav .btn { width: 100%; min-height: 48px; }
+
+  .grid-vehicles { grid-template-columns: repeat(2, 1fr); }
+  .grid-dest, .grid-dest[data-visible], .grid-dest:not([data-visible]) { grid-template-columns: repeat(auto-fit, minmax(calc(50% - 13px), 1fr)); }
+  html.js .reveal-left, html.js .reveal-right { translate: 0 28px; }
+  html.js .is-visible.reveal-left, html.js .is-visible.reveal-right { translate: none; }
+  .grid-dest[data-visible="3"] { grid-template-columns: repeat(3, 1fr); }
+  .split { grid-template-columns: 1fr; gap: 32px; }
+  .contact-layout { grid-template-columns: 1fr; gap: 24px; }
+  .split.reverse .split-media { order: 0; }
+  .steps { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px 40px; }
+  .footer-grid > :first-child { grid-column: 1 / -1; }
+  .section { padding: 64px 0; }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  body { font-size: .97rem; }
+  .container { padding: 0 16px; }
+  .grid-vehicles, .grid-dest, .grid-dest[data-visible] { grid-template-columns: 1fr; gap: 22px; }
+  .form-grid, .form-actions, .contact-buttons { grid-template-columns: 1fr; }
+  .info-card, .form-card { padding: 22px 18px; }
+  body:has(.form-card:focus-within) .wa-float { opacity: 0; pointer-events: none; }
+  .dialog-head { padding: 18px 18px 14px; }
+  .dialog-body { padding: 18px 18px 22px; }
+  .page-banner { padding: 40px 0 44px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 32px; padding-bottom: 36px; }
+  /* floating WhatsApp: icon-only so it never covers form fields or buttons */
+  .wa-float { right: 14px; bottom: 14px; width: 54px; height: 54px; padding: 0; justify-content: center; }
+  .wa-float span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .site-footer { padding-bottom: 70px; }
+  .section { padding: 52px 0; }
+}
+
+/* Small mobile */
+@media (max-width: 380px) {
+  .logo img { height: 50px; }
+  h1 { font-size: 1.8rem; }
+  .btn { padding: .75rem 1rem; font-size: .85rem; }
+}
+
+@media (max-width: 960px) { .two-col { grid-template-columns: 1fr; } .content-section { padding: 56px 0; } }
+@media (max-width: 640px) {
+  .content-section p, .content-section li { font-size: .98rem; line-height: 1.75; }
+  .cta-band .btn { width: 100%; } .cta-band .btn + .btn { margin: 10px 0 0; }
+}
+
+
+/* Hero (full-background slider) */
+@media (max-width: 960px) { .hero-grid { padding: 48px 0 140px; min-height: 600px; } .hero-copy { padding: 26px 24px; margin-left: 20px; max-width: min(520px, calc(100% - 40px)); } }
+@media (max-width: 640px) { .hero-copy { max-width: none; width: auto; margin: 0 16px; padding: 22px 18px; } .hero-copy h1 { font-size: 1.6rem; } .hero-copy .hero-text { font-size: .95rem; margin-bottom: 20px; } .hero-copy .hero-ctas .btn { flex: 1 1 auto; padding: .7rem 1rem; font-size: .8rem; } .hero-bar-inner { justify-content: center; } .slide-caption { text-align: center; font-size: .86rem; width: 100%; } .hero-pause { display: none; } .hero-grid { padding: 36px 0 150px; } }
+
+@media (min-width: 641px) { .hero-bar-inner { padding-right: 190px; } }
+
+/* Hero panel: stack buttons only on very narrow screens */
+@media (max-width: 400px) { .hero-copy .hero-ctas .btn { width: 100%; } }
+
+
+/* ==========================================================================
+   Fixes: home destination grid + tables on phones
+   ========================================================================== */
+/* Home page grid has no data-visible attribute, so the 960px :not([data-visible]) rule
+   (higher specificity) kept it at 2 columns on phones. Match it here. */
+@media (max-width: 640px) {
+  .grid-dest:not([data-visible]) { grid-template-columns: 1fr; gap: 22px; }
+}
+
+/* Tables: on phones each row becomes a labelled card so no column is hidden off-screen.
+   Colours, borders and typography are inherited from the desktop table rules. */
+@media (max-width: 640px) {
+  .table-wrap { overflow-x: visible; background: transparent; border: 0; border-radius: 0; }
+  .table-wrap table, .table-wrap tbody, .table-wrap tr, .table-wrap td { display: block; width: 100%; min-width: 0; }
+  .table-wrap table { font-size: .95rem; }
+  .table-wrap thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .table-wrap tbody tr { background: #fff; border: 1px solid rgba(100, 30, 43, .15); border-top: 4px solid var(--burgundy); border-radius: 12px; margin-bottom: 14px; overflow: hidden; }
+  .table-wrap tbody tr:nth-child(even) { background: var(--pearl); }
+  .table-wrap tbody tr:hover { background: #f6ebe0; }
+  .table-wrap td { display: grid; grid-template-columns: minmax(96px, 34%) 1fr; gap: 4px 12px; padding: 10px 14px; border-top: 1px solid rgba(100, 30, 43, .1); overflow-wrap: anywhere; }
+  .table-wrap td:first-child { border-top: 0; font-weight: 600; color: var(--dark-wine); }
+  .table-wrap td::before { content: attr(data-label); font-weight: 600; font-size: .82rem; color: var(--burgundy); }
+}
